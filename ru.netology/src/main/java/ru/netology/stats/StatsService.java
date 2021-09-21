@@ -15,10 +15,7 @@ public class StatsService {
 
     // Метод считает среднюю сумму продаж в месяц
     public int avgSum(int[] sales) {
-        int sum = 0;
-        for (int value : sales) {
-            sum = sum + value;
-        }
+        int sum = allSalesSum(sales);
         return sum / sales.length;
     }
 
@@ -30,7 +27,6 @@ public class StatsService {
         for (int sale : sales) {
             if (sale >= sales[maxMonth]) {
                 maxMonth = month;
-                System.out.println(maxMonth);
             }
             month++;
         }
@@ -54,12 +50,8 @@ public class StatsService {
 
     // Метод показывает кол-во месяцев, в которых продажи были ниже среднего
     public int belowAvgMonths(int[] sales) {
-        int sum = 0;
         int amountBelowMonths = 0;
-        for (int value : sales) {
-            sum = sum + value;
-        }
-        int avgSum = sum / sales.length;
+        int avgSum = avgSum(sales);
 
         for (int sale : sales) {
             if (sale < avgSum) {
@@ -72,12 +64,8 @@ public class StatsService {
 
     // Метод показывает кол-во месяцев, в которых продажи были выше среднего
     public int aboveAvgMonths(int[] sales) {
-        int sum = 0;
         int amountAboveMonths = 0;
-        for (int value : sales) {
-            sum = sum + value;
-        }
-        int avgSum = sum / sales.length;
+        int avgSum = avgSum(sales);
 
         for (int sale : sales) {
             if (sale > avgSum) {
@@ -86,6 +74,5 @@ public class StatsService {
         }
         return amountAboveMonths;
     }
-
 
 }
